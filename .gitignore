@@ -1,0 +1,4 @@
+# Ignorar arquivos do macOS
+.DS_Store
+# Ignorar arquivos .DS_Store em qualquer subpasta
+/.DS_Store
