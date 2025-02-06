@@ -2,3 +2,12 @@
 .DS_Store
 # Ignorar arquivos .DS_Store em qualquer subpasta
 /.DS_Store
+# Ignorar executáveis
+*.exe
+*.out
+
+# Ignorar arquivos de objeto
+*.o
+
+# Ignorar arquivos temporários do VS Code
+.vscode/
