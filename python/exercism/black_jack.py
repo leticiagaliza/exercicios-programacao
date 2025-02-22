@@ -8,8 +8,7 @@ def value_of_card(card):
     2.  'A' (ace card) = 1
     3.  '2' - '10' = numerical value.
     """
-
-    return 10 if card in ('J', 'Q', 'K') else 1 if card == 'A' else int(card)
+    return 10 if card in 'JQK' else 1 if card == 'A' else int(card)
 
 
 def higher_card(card_one, card_two):
@@ -22,8 +21,8 @@ def higher_card(card_one, card_two):
     2.  'A' (ace card) = 1
     3.  '2' - '10' = numerical value.
     """
-    value_1 = 10 if card_one in ('J', 'Q', 'K', '10') else 1 if card_one == 'A' else int(card_one)
-    value_2 = 10 if card_two in ('J', 'Q', 'K', '10') else 1 if card_two == 'A' else int(card_two)
+    value_1 = 10 if card_one in 'JQK' else 1 if card_one == 'A' else int(card_one)
+    value_2 = 10 if card_two in 'JQK' else 1 if card_two == 'A' else int(card_two)
 
     return card_one if value_1 > value_2 else card_two if value_2 > value_1 else (card_one, card_two)
 
@@ -38,10 +37,10 @@ def value_of_ace(card_one, card_two):
     2.  'A' (ace card) = 11 (if already in hand)
     3.  '2' - '10' = numerical value.
     """
-    value_1 = 10 if card_one in ('J', 'Q', 'K', 10) else 1 if card_one == 'A' else int(card_one)
-    value_2 = 10 if card_two in ('J', 'Q', 'K', 10) else 1 if card_two == 'A' else int(card_two)
+    value_1 = 10 if card_one in 'JQK' else 1 if card_one == 'A' else int(card_one)
+    value_2 = 10 if card_two in 'JQK' else 1 if card_two == 'A' else int(card_two)
 
-    return 1 if any(x == 'A' for x in (card_one, card_two)) else 11 if value_1 + value_2 <= 10 else 1
+    return 1 if any(card == 'A' for card in (card_one, card_two)) else 11 if value_1 + value_2 <= 10 else 1
 
 
 def is_blackjack(card_one, card_two):
@@ -54,7 +53,6 @@ def is_blackjack(card_one, card_two):
     2.  'A' (ace card) = 11 (if already in hand)
     3.  '2' - '10' = numerical value.
     """
-
     return (card_one == 'A' and card_two in ('J', 'Q', 'K', '10')) or card_two == 'A' and card_one in (
     'J', 'Q', 'K', '10')
 
@@ -65,8 +63,7 @@ def can_split_pairs(card_one, card_two):
     :param card_one, card_two: str - cards dealt.
     :return: bool - can the hand be split into two pairs? (i.e. cards are of the same value).
     """
-
-    return all(x in ('10', 'J', 'Q', 'K') for x in (card_one, card_two)) or card_one == card_two
+    return all(card in ('10', 'J', 'Q', 'K') for card in (card_one, card_two)) or card_one == card_two
 
 
 def can_double_down(card_one, card_two):
@@ -75,7 +72,7 @@ def can_double_down(card_one, card_two):
     :param card_one, card_two: str - first and second cards in hand.
     :return: bool - can the hand can be doubled down? (i.e. totals 9, 10 or 11 points).
     """
-    value_1 = 10 if card_one in ('J', 'Q', 'K', '10') else 1 if card_one == 'A' else int(card_one)
-    value_2 = 10 if card_two in ('J', 'Q', 'K', '10') else 1 if card_two == 'A' else int(card_two)
+    value_1 = 10 if card_one in 'JQK' else 1 if card_one == 'A' else int(card_one)
+    value_2 = 10 if card_two in 'JQK' else 1 if card_two == 'A' else int(card_two)
 
-    return (value_1 + value_2) in (9, 10, 11)
+    return value_1 + value_2 in (9, 10, 11)
